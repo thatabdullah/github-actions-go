@@ -1,0 +1,25 @@
+name: go-CI-test
+
+on: [push, pull_request]
+
+jobs:
+    go-CI-test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout
+              uses: actions/checkout@v4
+
+            - name: install go
+              uses: actions/setup-go@v3
+              with:
+                go-version: "1.19"
+            
+            - name: Build Go program
+              run: |
+                go build hello.go
+    
+            - name: Run Go program
+              run: |
+                ./hello
+                
+
